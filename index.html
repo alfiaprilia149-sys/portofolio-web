@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfi Aprilia — Junior Web Developer (Back-End)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF2F5;
+    --paper-card:#FFFFFF;
+    --ink:#142A4C;
+    --ink-soft:#4C5A70;
+    --accent:#2F6FA6;
+    --accent-soft:#DCE7F0;
+    --line:#CBD5DF;
+    --mono-tag-bg:#142A4C;
+    --mono-tag-fg:#EEF2F5;
+    --radius:4px;
+    --maxw:800px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:28px 28px;
+    background-position:-1px -1px;
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    font-size:16px;
+  }
+
+  a{color:var(--accent);}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    background:rgba(238,242,245,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .nav-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .nav-links{
+    display:flex;
+    gap:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* ---------- SECTION LABEL ---------- */
+  .tag-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--accent);
+    margin:0 0 10px 0;
+  }
+
+  section{ padding:64px 0; }
+  section + section{ border-top:1px solid var(--line); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:56px; }
+  .json-card{
+    background:var(--ink);
+    color:#D7E4F2;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    padding:20px 22px;
+    border-radius:var(--radius);
+    max-width:420px;
+    line-height:1.7;
+    margin-bottom:32px;
+  }
+  .json-card .k{ color:#8FB6DA; }
+  .json-card .v{ color:#F0D9A8; }
+  .json-card .punct{ color:#5E7EA0; }
+
+  h1.headline{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:2.4rem;
+    line-height:1.25;
+    letter-spacing:-0.01em;
+    max-width:620px;
+    margin:0 0 20px 0;
+  }
+  .hero p.sub{
+    max-width:520px;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    margin:0 0 32px 0;
+  }
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block;
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:0.92rem;
+    padding:11px 20px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    border:1px solid var(--ink);
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ background:var(--accent); border-color:var(--accent); }
+  .btn-ghost{ color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--ink); }
+
+  /* ---------- ABOUT ---------- */
+  .about-text{ max-width:640px; color:var(--ink-soft); font-size:1rem; }
+  .about-text strong{ color:var(--ink); }
+
+  h2.section-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.6rem;
+    margin:0 0 20px 0;
+  }
+
+  .chip-group{ margin-top:28px; }
+  .chip-group-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    background:var(--accent-soft);
+    color:var(--ink);
+    padding:5px 11px;
+    border-radius:var(--radius);
+  }
+  .chip.soft{ background:transparent; border:1px solid var(--line); color:var(--ink-soft); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+    margin-bottom:18px;
+  }
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .endpoint-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    background:var(--mono-tag-bg);
+    color:var(--mono-tag-fg);
+    padding:4px 9px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .endpoint-tag.get span{ color:#9FD8B0; }
+  .endpoint-tag.design span{ color:#F0C98F; }
+  .project-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.15rem;
+    margin:0;
+  }
+  .project-desc{ color:var(--ink-soft); font-size:0.96rem; margin:0 0 14px 0; }
+  .project-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .stack-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:3px 9px;
+    border-radius:3px;
+  }
+  .project-links{ display:flex; gap:16px; font-size:0.88rem; }
+  .project-links a{ text-decoration:none; border-bottom:1px solid var(--accent); margin-right:16px; }
+  .project-links a:last-child{ margin-right:0; }
+  .project-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    border-left:2px solid var(--accent);
+    padding:10px 16px;
+    margin-top:24px;
+    background:var(--accent-soft);
+    border-radius:0 var(--radius) var(--radius) 0;
+  }
+
+  /* ---------- TIMELINE (experience/education/cert) ---------- */
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .t-item{ position:relative; padding-bottom:28px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-26px; top:5px;
+    width:9px; height:9px;
+    border-radius:2px;
+    background:var(--accent);
+    border:2px solid var(--paper);
+    outline:1px solid var(--accent);
+  }
+  .t-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+  .t-title{ font-weight:600; margin:0 0 4px 0; font-size:1rem; }
+  .t-org{ color:var(--ink-soft); font-size:0.92rem; margin:0 0 6px 0; }
+  .t-desc{ color:var(--ink-soft); font-size:0.92rem; margin:0; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:var(--radius);
+    padding:44px 36px;
+    text-align:left;
+  }
+  .contact-card h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.7rem;
+    margin:0 0 12px 0;
+  }
+  .contact-card p{ color:#B9C7D8; max-width:480px; margin:0 0 24px 0; }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:14px; }
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--paper);
+    text-decoration:none;
+    border:1px solid #3A4E68;
+    padding:9px 16px;
+    border-radius:var(--radius);
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .contact-links a:hover{ border-color:#9FD8FF; color:#9FD8FF; }
+
+  footer{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    padding:28px 0 40px 0;
+  }
+
+  @media (max-width:600px){
+    h1.headline{ font-size:1.85rem; }
+    .contact-card{ padding:32px 22px; }
+    section{ padding:48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Alfi Aprilia Nur Fauzia Fatimah</a>
+    <nav class="nav-links">
+      <a href="#about">tentang</a>
+      <a href="#projects">project</a>
+      <a href="#experience">pengalaman</a>
+      <a href="#contact">kontak</a>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="json-card">
+      <span class="punct">{</span><br>
+      &nbsp;&nbsp;<span class="k">"name"</span><span class="punct">:</span> <span class="v">"Alfi Aprilia Nur Fauzia Fatimah"</span><span class="punct">,</span><br>
+      &nbsp;&nbsp;<span class="k">"role"</span><span class="punct">:</span> <span class="v">"Junior Web Developer (Back-End)"</span><span class="punct">,</span><br>
+      &nbsp;&nbsp;<span class="k">"status"</span><span class="punct">:</span> <span class="v">"open to internship"</span><br>
+      <span class="punct">}</span>
+    </div>
+
+    <h1 class="headline">Merancang server dan REST API yang rapi, satu endpoint pada satu waktu.</h1>
+    <p class="sub">Siswa Rekayasa Perangkat Lunak, SMK Telkom Malang, dengan fokus membangun logika server, database, dan API untuk aplikasi web.</p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#projects">Lihat project</a>
+      <a class="btn btn-ghost" href="mailto:alfiaprilia149@gmail.com">Hubungi saya</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <p class="tag-label">// tentang</p>
+    <h2 class="section-title">Tentang saya</h2>
+    <p class="about-text">
+      Saya siswa <strong>Rekayasa Perangkat Lunak di SMK Telkom Malang</strong> (2024–sekarang) dengan minat pada bidang
+      <strong>Junior Web Developer (Back-End)</strong>. Saya senang membangun logika server, merancang database, dan
+      mengembangkan REST API untuk aplikasi web — termasuk menerapkan autentikasi menggunakan <strong>JWT (JSON Web Token)</strong>.
+      Saat ini saya sedang memperdalam TypeScript, NestJS, dan Prisma ORM lewat project-project yang saya kerjakan sendiri maupun bersama tim.
+    </p>
+
+    <div class="chip-group">
+      <p class="chip-group-label">bahasa &amp; framework</p>
+      <div class="chips">
+        <span class="chip">JavaScript</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">NestJS</span>
+        <span class="chip">Prisma ORM</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">JWT</span>
+        <span class="chip">REST API</span>
+      </div>
+    </div>
+
+    <div class="chip-group">
+      <p class="chip-group-label">soft skill</p>
+      <div class="chips">
+        <span class="chip soft">Problem Solving</span>
+        <span class="chip soft">Kerja Sama Tim</span>
+        <span class="chip soft">Komunikasi yang baik</span>
+        <span class="chip soft">Dokumentasi API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <p class="tag-label">// project</p>
+    <h2 class="section-title">Project pilihan</h2>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-title">DesserTopia — Web Pemesanan Dessert</h3>
+        <span class="endpoint-tag get"><span>GET</span> /projects/dessertopia</span>
+      </div>
+      <p class="project-desc">Website kuliner untuk mendukung transaksi jual-beli dessert, dikembangkan sebagai bagian dari Ujian Kenaikan Kelas (UKL). REST API dirancang untuk mengelola alur pemesanan dan data produk.</p>
+      <div class="project-meta">
+        <span class="stack-chip">TypeScript</span>
+        <span class="stack-chip">NestJS</span>
+        <span class="stack-chip">Prisma ORM</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/AlfiAprilia/Ukl_Dessertopia" target="_blank" rel="noopener">Lihat repository</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-title">TanyaDok — Web Konsultasi Dokter</h3>
+        <span class="endpoint-tag get"><span>GET</span> /projects/tanyadok</span>
+      </div>
+      <p class="project-desc">Website kesehatan untuk mempermudah pengguna berkonsultasi dengan dokter, dikembangkan sebagai salah satu project tugas sekolah. REST API dirancang untuk mendukung alur konsultasi.</p>
+      <div class="project-meta">
+        <span class="stack-chip">TypeScript</span>
+        <span class="stack-chip">NestJS</span>
+        <span class="stack-chip">Prisma ORM</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/alfiaprilia149-sys/tanyaDok_be" target="_blank" rel="noopener">Lihat repository</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-title">KitchenLab — Aplikasi Pencarian Kelas Memasak</h3>
+        <span class="endpoint-tag design"><span>DESIGN</span> /projects/kitchenlab</span>
+      </div>
+      <p class="project-desc">Aplikasi kuliner untuk membantu pengguna menemukan kelas memasak online bersama chef ahli, dikembangkan sebagai tugas sekolah bertema kewirausahaan. Peran saya di project ini adalah desainer aplikasi.</p>
+      <div class="project-meta">
+        <span class="stack-chip">Figma</span>
+        <span class="stack-chip">UI/UX Design</span>
+      </div>
+      <div class="project-links">
+        <a href="https://www.figma.com/design/uNsckzFVnabPGaNdAk6DWH/Untitled?node-id=0-1&p=f&t=qP8MaLtyCHL0a9F9-0" target="_blank" rel="noopener">Lihat desain di Figma</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-title">KostHunter</h3>
+        <span class="endpoint-tag get"><span>GET</span> /projects/kosthunter</span>
+      </div>
+      <p class="project-desc">Sistem back-end untuk membantu pengguna mencari dan mengelola informasi tempat kost.</p>
+      <div class="project-meta">
+        <span class="stack-chip">TypeScript</span>
+        <span class="stack-chip">NestJS</span>
+        <span class="stack-chip">Prisma ORM</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/AlfiAprilia/kos-hunter" target="_blank" rel="noopener">Lihat repository</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-title">BackLibrary</h3>
+        <span class="endpoint-tag get"><span>GET</span> /projects/backlibrary</span>
+      </div>
+      <p class="project-desc">Sistem back-end untuk manajemen perpustakaan, sudah di-deploy secara live.</p>
+      <div class="project-meta">
+        <span class="stack-chip">TypeScript</span>
+        <span class="stack-chip">NestJS</span>
+        <span class="stack-chip">Prisma ORM</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/AlfiAprilia/backend-library" target="_blank" rel="noopener">Lihat repository</a>
+        <a href="https://backend-library-eight.vercel.app" target="_blank" rel="noopener">Live demo</a>
+      </div>
+    </div>
+
+    <p class="project-note">
+      DesserTopia, TanyaDok, KostHunter, dan BackLibrary dibangun dengan pola arsitektur back-end yang sama: NestJS (TypeScript) untuk struktur server, Prisma sebagai ORM untuk koneksi ke database, dan REST API sebagai penghubung antara data dan aplikasi. KitchenLab dibentuk dari kerja sama tim yang membutuhkan komunikasi dan problem solving yang baik.
+    </p>
+  </div>
+</section>
+
+<!-- EXPERIENCE / EDUCATION / CERT -->
+<section id="experience">
+  <div class="wrap">
+    <p class="tag-label">// pengalaman</p>
+    <h2 class="section-title">Pendidikan, organisasi &amp; sertifikasi</h2>
+
+    <div class="timeline">
+      <div class="t-item">
+        <p class="t-date">2024 — sekarang</p>
+        <p class="t-title">Rekayasa Perangkat Lunak</p>
+        <p class="t-org">SMK Telkom Malang</p>
+      </div>
+
+      <div class="t-item">
+        <p class="t-date">2025</p>
+        <p class="t-title">Ketua Divisi Rumah Tangga</p>
+        <p class="t-org">Dewan Ambalan</p>
+        <p class="t-desc">Mengoordinasikan kebutuhan logistik kegiatan dan turut membantu berjalannya kegiatan kewirausahaan pada acara Perjusa 2025.</p>
+      </div>
+
+      <div class="t-item">
+        <p class="t-date">November 2025</p>
+        <p class="t-title">Semifinalis — Future Researchers Competition (Business Plan)</p>
+        <p class="t-org">Telkom University</p>
+      </div>
+
+      <div class="t-item">
+        <p class="t-date">September 2024</p>
+        <p class="t-title">UKBI (Uji Kemahiran Berbahasa Indonesia)</p>
+        <p class="t-org">Badan Pengembangan dan Pembinaan Bahasa</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2>Mari terhubung</h2>
+      <p>Terbuka untuk kesempatan magang di bidang Web Development (Back-End). Jangan ragu untuk menghubungi saya.</p>
+      <div class="contact-links">
+        <a href="mailto:alfiaprilia149@gmail.com">alfiaprilia149@gmail.com</a>
+        <a href="https://linkedin.com/in/alfiaprilia" target="_blank" rel="noopener">linkedin.com/in/alfiaprilia</a>
+        <a href="https://github.com/AlfiAprilia" target="_blank" rel="noopener">github.com/AlfiAprilia</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Alfi Aprilia Nur Fauzia Fatimah
+</footer>
+
+</body>
+</html>
