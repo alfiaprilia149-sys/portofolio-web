@@ -6,580 +6,546 @@
 <title>Alfi Aprilia — Junior Web Developer (Back-End)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F2E9D8;
-    --card:#FBF6EC;
-    --ink:#25344F;
-    --ink-soft:#5B6E82;
+    --navy:#25344F;
+    --navy-deep:#1B2740;
+    --slate:#617891;
+    --tan:#D5B893;
     --coffee:#6F4D38;
     --maroon:#632024;
-    --tan:#D5B893;
-    --line:#D8C7A4;
-    --radius:3px;
-    --maxw:820px;
+    --cream:#F6EFE2;
+    --card:#FBF7EE;
+    --line:#DCCDB0;
+    --maxw:1040px;
   }
-
-  *{box-sizing:border-box;}
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
   body{
     margin:0;
-    background:var(--paper);
-    background-image:repeating-linear-gradient(
-      to bottom,
-      rgba(111,77,56,0.08) 0px,
-      rgba(111,77,56,0.08) 1px,
-      transparent 1px,
-      transparent 34px
-    );
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    line-height:1.6;
+    background:var(--cream);
+    color:var(--navy);
+    font-family:'DM Sans', sans-serif;
     font-size:16px;
+    line-height:1.65;
   }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
 
-  a{ color:var(--coffee); }
-  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
-
-  /* ---------- NAV: folder tabs ---------- */
-  header.nav{
-    border-bottom:3px double var(--coffee);
-    background:var(--paper);
-  }
-  .nav-inner{
-    max-width:var(--maxw); margin:0 auto; padding:18px 24px 0 24px;
-    display:flex; justify-content:space-between; align-items:flex-end;
-    gap:16px; flex-wrap:wrap;
-  }
-  .nav-name{
-    font-family:'Fraunces', serif;
-    font-weight:600; font-size:1.15rem;
-    color:var(--ink); text-decoration:none;
-  }
-  .nav-tabs{ display:flex; gap:6px; }
-  .nav-tabs a{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    text-decoration:none;
-    color:var(--ink-soft);
-    background:var(--tan);
-    padding:8px 14px 9px 14px;
-    border-radius:4px 4px 0 0;
-    border:1px solid var(--line);
-    border-bottom:none;
-    transition:background .15s ease, color .15s ease;
-  }
-  .nav-tabs a:hover{ background:var(--coffee); color:var(--card); }
-
-  /* ---------- shared label ---------- */
-  .file-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    color:var(--maroon);
-    letter-spacing:0.02em;
-    margin:0 0 10px 0;
-  }
-  h2.section-title{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:1.7rem;
-    margin:0 0 24px 0;
-    color:var(--ink);
-  }
-
-  section{ padding:60px 0; }
-  section + section{ border-top:1px dashed var(--line); }
-
-  /* ---------- HERO ---------- */
-  .hero{ padding-top:52px; position:relative; }
-  .hero-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
-  .hero-id{
+  .eyebrow{
     font-family:'IBM Plex Mono', monospace;
     font-size:0.8rem;
-    color:var(--ink-soft);
-    margin:0 0 14px 0;
-  }
-  h1.headline{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:2.6rem;
-    line-height:1.15;
-    margin:0 0 6px 0;
-    max-width:640px;
-  }
-  .role-line{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.9rem;
     color:var(--coffee);
-    margin:0 0 22px 0;
-  }
-  .stamp{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    letter-spacing:0.06em;
-    color:var(--maroon);
-    border:2px solid var(--maroon);
-    border-radius:50%;
-    width:104px; height:104px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    transform:rotate(-8deg);
-    flex-shrink:0;
-    padding:8px;
-    opacity:0.85;
-  }
-  .hero p.sub{
-    max-width:520px; color:var(--ink-soft); font-size:1.02rem;
-    margin:18px 0 30px 0;
-  }
-  .btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
-  .btn{
-    display:inline-block;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.85rem;
-    padding:11px 20px;
-    border-radius:var(--radius);
-    text-decoration:none;
-    border:1px solid var(--ink);
-  }
-  .btn-primary{ background:var(--ink); color:var(--paper); }
-  .btn-primary:hover{ background:var(--maroon); border-color:var(--maroon); }
-  .btn-ghost{ color:var(--ink); border-color:var(--coffee); }
-  .btn-ghost:hover{ background:var(--tan); }
-
-  /* ---------- ABOUT: index card ---------- */
-  .index-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-left:5px solid var(--maroon);
-    border-radius:0 var(--radius) var(--radius) 0;
-    padding:30px 32px;
-    display:grid;
-    grid-template-columns:150px 1fr;
-    gap:28px;
-  }
-  .photo-frame{
-    width:150px; height:150px;
-    position:relative;
-  }
-  .photo-frame img{
-    width:100%; height:100%;
-    object-fit:cover;
-    border:6px solid #fff;
-    box-shadow:0 1px 3px rgba(37,52,79,0.25);
-    transform:rotate(-3deg);
-    display:block;
-  }
-  .about-text{ color:var(--ink-soft); font-size:1rem; margin:0; }
-  .about-text strong{ color:var(--ink); }
-
-  .tag-block{ margin-top:26px; }
-  .tag-block-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.76rem; color:var(--ink-soft); margin-bottom:9px;
-  }
-  .stamp-tags{ display:flex; flex-wrap:wrap; gap:9px; }
-  .stamp-tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    border:1px dashed var(--coffee);
-    color:var(--coffee);
-    padding:5px 11px;
-    border-radius:3px;
-    background:transparent;
-  }
-  .stamp-tag.soft{ border-color:var(--line); color:var(--ink-soft); }
-
-  @media (max-width:600px){
-    .index-card{ grid-template-columns:1fr; }
-    .photo-frame{ width:130px; height:130px; }
-  }
-
-  /* ---------- PROJECTS: folders ---------- */
-  .folder{ margin-bottom:26px; }
-  .folder-tab{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    background:var(--coffee);
-    color:var(--card);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    padding:7px 16px;
-    border-radius:4px 4px 0 0;
-  }
-  .folder-body{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:0 var(--radius) var(--radius) var(--radius);
-    padding:24px 26px;
-    position:relative;
-  }
-  .folder-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
-  .folder-title{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:1.2rem;
     margin:0 0 10px 0;
   }
-  .folder-desc{ color:var(--ink-soft); font-size:0.96rem; margin:0 0 16px 0; }
-  .folder-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
-  .folder-links{ display:flex; gap:16px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
-  .folder-links a{ text-decoration:underline; text-decoration-color:var(--line); }
-  .role-stamp{
-    position:absolute;
-    top:20px; right:24px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.66rem;
-    letter-spacing:0.05em;
-    color:var(--maroon);
-    border:1.5px solid var(--maroon);
-    border-radius:50%;
-    width:64px; height:64px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    transform:rotate(10deg);
-    opacity:0.75;
+  h2.title{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:2.4rem;
     line-height:1.1;
-  }
-  @media (max-width:600px){ .role-stamp{ display:none; } }
-
-  .folder-note{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.82rem;
-    color:var(--ink-soft);
-    border-left:3px dashed var(--coffee);
-    padding:10px 16px;
-    margin-top:20px;
-    background:var(--tan);
+    letter-spacing:-0.02em;
+    margin:0 0 28px 0;
   }
 
-  /* ---------- CATALOG LIST (timeline) ---------- */
-  .catalog{ border-top:1px solid var(--line); }
-  .catalog-row{
-    display:grid;
-    grid-template-columns:150px 1fr;
-    gap:18px;
-    padding:18px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .catalog-date{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    color:var(--maroon);
-  }
-  .catalog-title{ font-weight:600; margin:0 0 4px 0; font-size:1rem; font-family:'Fraunces', serif; }
-  .catalog-org{ color:var(--coffee); font-size:0.9rem; margin:0 0 6px 0; }
-  .catalog-desc{ color:var(--ink-soft); font-size:0.9rem; margin:0; }
-  @media (max-width:560px){ .catalog-row{ grid-template-columns:1fr; gap:4px; } }
-
-  /* ---------- CONTACT: sealed envelope ---------- */
-  .envelope{
-    background:var(--ink);
-    color:var(--paper);
-    border-radius:var(--radius);
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--navy);
+    color:var(--cream);
     position:relative;
-    padding:52px 36px 40px 36px;
     overflow:hidden;
   }
-  .envelope::before{
+  .hero::before{
     content:"";
     position:absolute;
-    top:0; left:0; right:0;
-    height:70px;
-    background:linear-gradient(135deg, transparent 49.5%, rgba(242,233,216,0.06) 50%, transparent 50.5%),
-               linear-gradient(-135deg, transparent 49.5%, rgba(242,233,216,0.06) 50%, transparent 50.5%);
+    width:520px; height:520px;
+    border-radius:50%;
+    background:var(--slate);
+    opacity:0.18;
+    right:-140px; top:-160px;
   }
-  .envelope h2{
-    font-family:'Fraunces', serif; font-weight:600; font-size:1.8rem; margin:0 0 12px 0;
+  .nav{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 0;
+    gap:16px;
+    flex-wrap:wrap;
   }
-  .envelope p{ color:#B8C2CC; max-width:480px; margin:0 0 26px 0; }
-  .contact-links{ display:flex; flex-wrap:wrap; gap:14px; }
-  .contact-links a{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.85rem;
-    color:var(--paper);
+  .nav-brand{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
     text-decoration:none;
-    border:1px solid #4A5A70;
-    padding:9px 16px;
-    border-radius:var(--radius);
-    transition:border-color .15s ease, color .15s ease;
+    color:var(--cream);
   }
+  .nav-links{ display:flex; gap:26px; font-size:0.92rem; }
+  .nav-links a{
+    text-decoration:none;
+    color:#C9D2DD;
+    padding-bottom:3px;
+    border-bottom:2px solid transparent;
+  }
+  .nav-links a:hover{ color:var(--tan); border-color:var(--tan); }
+
+  .hero-grid{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:48px;
+    padding:48px 0 88px 0;
+  }
+  .hero-text{ flex:1 1 auto; min-width:0; }
+  .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.9rem;
+    color:var(--tan);
+    margin:0 0 18px 0;
+  }
+  h1.name{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:4rem;
+    line-height:1.02;
+    letter-spacing:-0.03em;
+    margin:0 0 24px 0;
+  }
+  h1.name span{ display:block; color:var(--tan); }
+  .lead{
+    max-width:520px;
+    color:#C9D2DD;
+    font-size:1.08rem;
+    margin:0 0 34px 0;
+  }
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block;
+    font-weight:600;
+    font-size:0.95rem;
+    padding:13px 26px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .btn-solid{ background:var(--tan); color:var(--navy); }
+  .btn-solid:hover{ background:var(--cream); }
+  .btn-line{ border:1.5px solid #52627C; color:var(--cream); }
+  .btn-line:hover{ border-color:var(--tan); color:var(--tan); }
+
+  .photo-wrap{
+    position:relative;
+    flex:0 0 auto;
+    width:320px;
+    height:410px;
+    margin-right:16px;
+  }
+  .photo-wrap::before{
+    content:"";
+    position:absolute;
+    left:18px; top:18px;
+    width:100%; height:100%;
+    background:var(--tan);
+    border-radius:160px 160px 14px 14px;
+  }
+  .photo-wrap::after{
+    content:"";
+    position:absolute;
+    left:-22px; bottom:34px;
+    width:62px; height:62px;
+    border-radius:50%;
+    background:var(--maroon);
+  }
+  .photo-wrap img{
+    position:relative;
+    z-index:1;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center top;
+    border-radius:160px 160px 14px 14px;
+    display:block;
+    background:var(--slate);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.block{ padding:84px 0; }
+
+  .about-grid{ display:flex; gap:56px; align-items:flex-start; }
+  .about-left{ flex:0 0 280px; }
+  .about-right{ flex:1 1 auto; min-width:0; }
+  .about-text{ font-size:1.08rem; color:#3B4A63; margin:0 0 30px 0; }
+  .about-text strong{ color:var(--navy); }
+  .chip-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    color:var(--slate);
+    margin:22px 0 10px 0;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    background:var(--navy);
+    color:var(--cream);
+    padding:6px 14px;
+    border-radius:999px;
+  }
+  .chip.alt{ background:transparent; color:var(--coffee); border:1.5px solid var(--tan); }
+
+  .projects{ background:var(--card); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .project{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:32px;
+    padding:30px 20px;
+    margin:0 -20px;
+    border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .project:last-of-type{ border-bottom:none; }
+  .project:hover{ background:#F1E7D3; }
+  .project-main{ flex:1 1 auto; min-width:0; }
+  .project-head{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
+  .project h3{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:700;
+    font-size:1.5rem;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .kind{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    padding:3px 10px;
+    border-radius:999px;
+    color:var(--cream);
+    background:var(--navy);
+  }
+  .kind.design{ background:var(--maroon); }
+  .project p{ margin:0; color:#4A5A72; max-width:560px; font-size:0.98rem; }
+  .project-side{ flex:0 0 220px; text-align:right; }
+  .stack{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--slate); margin:0 0 12px 0; }
+  .project-links{ display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+  .project-links a{
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--maroon);
+    text-decoration:none;
+    border-bottom:2px solid var(--tan);
+  }
+  .project-links a:hover{ border-color:var(--maroon); }
+  .note{
+    margin:34px 0 0 0;
+    padding:18px 22px;
+    background:var(--tan);
+    border-radius:12px;
+    font-size:0.92rem;
+    color:var(--navy-deep);
+  }
+
+  .cards{ display:flex; flex-wrap:wrap; gap:20px; }
+  .card{
+    flex:1 1 calc(50% - 10px);
+    min-width:260px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:4px solid var(--maroon);
+    border-radius:12px;
+    padding:22px 24px;
+  }
+  .card-date{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--maroon); margin:0 0 8px 0; }
+  .card h3{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    line-height:1.3;
+    margin:0 0 4px 0;
+  }
+  .card-org{ color:var(--coffee); font-size:0.92rem; margin:0 0 8px 0; }
+  .card-desc{ color:#4A5A72; font-size:0.92rem; margin:0; }
+
+  .lang{ margin-top:44px; }
+
+  .contact{
+    background:var(--navy);
+    color:var(--cream);
+    padding:88px 0 72px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact::before{
+    content:"";
+    position:absolute;
+    width:420px; height:420px;
+    border-radius:50%;
+    background:var(--maroon);
+    opacity:0.45;
+    left:-160px; bottom:-220px;
+  }
+  .contact .wrap{ position:relative; }
+  .contact h2{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:3rem;
+    letter-spacing:-0.025em;
+    line-height:1.05;
+    margin:0 0 16px 0;
+  }
+  .contact p{ color:#C9D2DD; max-width:480px; margin:0 0 32px 0; font-size:1.05rem; }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:12px; }
+  .contact-links a{
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.88rem;
+    padding:12px 22px;
+    border-radius:999px;
+    border:1.5px solid #52627C;
+    color:var(--cream);
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .contact-links a:first-child{ background:var(--tan); color:var(--navy); border-color:var(--tan); }
   .contact-links a:hover{ border-color:var(--tan); color:var(--tan); }
+  .contact-links a:first-child:hover{ background:var(--cream); color:var(--navy); }
 
   footer{
+    background:var(--navy-deep);
+    color:#8D9BB0;
     text-align:center;
     font-family:'IBM Plex Mono', monospace;
     font-size:0.76rem;
-    color:var(--ink-soft);
-    padding:26px 0 40px 0;
+    padding:22px 0;
   }
 
-  @media (max-width:600px){
-    h1.headline{ font-size:1.9rem; }
-    .envelope{ padding:40px 22px 32px 22px; }
-    section{ padding:44px 0; }
+  @media (max-width:860px){
+    .hero-grid{ flex-direction:column-reverse; align-items:flex-start; padding:24px 0 64px 0; gap:40px; }
+    .photo-wrap{ width:250px; height:320px; margin-right:0; }
+    .photo-wrap::before, .photo-wrap img{ border-radius:125px 125px 12px 12px; }
+    h1.name{ font-size:2.8rem; }
+    .about-grid{ flex-direction:column; gap:8px; }
+    .about-left{ flex:none; }
+    .project{ flex-direction:column; gap:14px; }
+    .project-side{ flex:none; text-align:left; }
+    .project-links{ align-items:flex-start; }
+    .contact h2{ font-size:2.3rem; }
+    h2.title{ font-size:2rem; }
+  }
+  @media (max-width:520px){
+    .nav-links{ gap:16px; font-size:0.85rem; }
+    h1.name{ font-size:2.3rem; }
   }
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="nav-name" href="#top">Alfi Aprilia Nur Fauzia Fatimah</a>
-    <nav class="nav-tabs">
-      <a href="#about">tentang</a>
-      <a href="#projects">berkas</a>
-      <a href="#experience">riwayat</a>
-      <a href="#contact">kontak</a>
+<header class="hero" id="top">
+  <div class="wrap">
+    <nav class="nav">
+      <a class="nav-brand" href="#top">Alfi Aprilia</a>
+      <div class="nav-links">
+        <a href="#about">Tentang</a>
+        <a href="#projects">Project</a>
+        <a href="#riwayat">Riwayat</a>
+        <a href="#contact">Kontak</a>
+      </div>
     </nav>
+
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="role">Junior Web Developer (Back-End)</p>
+        <h1 class="name">Alfi Aprilia <span>Nur Fauzia Fatimah</span></h1>
+        <p class="lead">Siswa Rekayasa Perangkat Lunak, SMK Telkom Malang, dengan fokus membangun logika server, database, dan REST API untuk aplikasi web.</p>
+        <div class="btn-row">
+          <a class="btn btn-solid" href="#projects">Lihat project</a>
+          <a class="btn btn-line" href="mailto:alfiaprilia149@gmail.com">Hubungi saya</a>
+        </div>
+      </div>
+
+      <div class="photo-wrap">
+        <img src="foto-profil.jpg" alt="Foto Alfi Aprilia Nur Fauzia Fatimah">
+      </div>
+    </div>
   </div>
 </header>
 
-<div id="top"></div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-top">
-      <div>
-        <p class="hero-id">Arsip Profesional — Berkas No. 001</p>
-        <h1 class="headline">Alfi Aprilia Nur Fauzia Fatimah</h1>
-        <p class="role-line">Junior Web Developer (Back-End)</p>
-      </div>
-      <div class="stamp">TERSEDIA<br>UNTUK<br>MAGANG</div>
+<section class="block" id="about">
+  <div class="wrap about-grid">
+    <div class="about-left">
+      <p class="eyebrow">tentang</p>
+      <h2 class="title">Tentang saya</h2>
     </div>
+    <div class="about-right">
+      <p class="about-text">
+        Saya siswa <strong>Rekayasa Perangkat Lunak di SMK Telkom Malang</strong> (2024–2027) dengan minat pada bidang
+        <strong>Junior Web Developer (Back-End)</strong>. Saya senang membangun logika server, merancang database, dan
+        mengembangkan REST API untuk aplikasi web, termasuk menerapkan autentikasi menggunakan <strong>JWT (JSON Web Token)</strong>.
+        Saat ini saya sedang memperdalam TypeScript, NestJS, dan Prisma ORM lewat project yang saya kerjakan sendiri maupun bersama tim.
+      </p>
 
-    <p class="sub">Siswa Rekayasa Perangkat Lunak, SMK Telkom Malang, dengan fokus membangun logika server, database, dan REST API untuk aplikasi web.</p>
-
-    <div class="btn-row">
-      <a class="btn btn-primary" href="#projects">Buka berkas project</a>
-      <a class="btn btn-ghost" href="mailto:alfiaprilia149@gmail.com">Hubungi saya</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <p class="file-label">arsip — tentang</p>
-    <h2 class="section-title">Tentang saya</h2>
-
-    <div class="index-card">
-      <div class="photo-frame">
-        <img src="foto-profil.jpg" alt="Foto Alfi Aprilia Nur Fauzia Fatimah">
+      <p class="chip-label">bahasa &amp; framework</p>
+      <div class="chips">
+        <span class="chip">JavaScript</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">NestJS</span>
+        <span class="chip">Prisma ORM</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">JWT</span>
+        <span class="chip">REST API</span>
       </div>
-      <div>
-        <p class="about-text">
-          Saya siswa <strong>Rekayasa Perangkat Lunak di SMK Telkom Malang</strong> (2024–2027) dengan minat pada bidang
-          <strong>Junior Web Developer (Back-End)</strong>. Saya senang membangun logika server, merancang database, dan
-          mengembangkan REST API untuk aplikasi web — termasuk menerapkan autentikasi menggunakan <strong>JWT (JSON Web Token)</strong>.
-          Saat ini saya sedang memperdalam TypeScript, NestJS, dan Prisma ORM lewat project-project yang saya kerjakan sendiri maupun bersama tim.
-        </p>
 
-        <div class="tag-block">
-          <p class="tag-block-label">bahasa &amp; framework</p>
-          <div class="stamp-tags">
-            <span class="stamp-tag">JavaScript</span>
-            <span class="stamp-tag">TypeScript</span>
-            <span class="stamp-tag">Node.js</span>
-            <span class="stamp-tag">NestJS</span>
-            <span class="stamp-tag">Prisma ORM</span>
-            <span class="stamp-tag">MySQL</span>
-            <span class="stamp-tag">JWT</span>
-            <span class="stamp-tag">REST API</span>
-          </div>
-        </div>
-
-        <div class="tag-block">
-          <p class="tag-block-label">soft skill</p>
-          <div class="stamp-tags">
-            <span class="stamp-tag soft">Problem Solving</span>
-            <span class="stamp-tag soft">Kerja Sama Tim</span>
-            <span class="stamp-tag soft">Komunikasi yang baik</span>
-          </div>
-        </div>
+      <p class="chip-label">soft skill</p>
+      <div class="chips">
+        <span class="chip alt">Problem Solving</span>
+        <span class="chip alt">Kerja Sama Tim</span>
+        <span class="chip alt">Komunikasi yang baik</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
+<section class="block projects" id="projects">
   <div class="wrap">
-    <p class="file-label">arsip — berkas project</p>
-    <h2 class="section-title">Project pilihan</h2>
+    <p class="eyebrow">project</p>
+    <h2 class="title">Project pilihan</h2>
 
-    <div class="folder">
-      <span class="folder-tab">Berkas No. 01 — DesserTopia</span>
-      <div class="folder-body">
-        <div class="role-stamp">BACK-<br>END</div>
-        <div class="folder-top">
-          <h3 class="folder-title">DesserTopia — Web Pemesanan Dessert</h3>
+    <div class="project">
+      <div class="project-main">
+        <div class="project-head">
+          <h3>DesserTopia</h3>
+          <span class="kind">Back-End</span>
         </div>
-        <p class="folder-desc">Website kuliner untuk mendukung transaksi jual-beli dessert, dikembangkan sebagai bagian dari Ujian Kenaikan Kelas (UKL). REST API dirancang untuk mengelola alur pemesanan dan data produk.</p>
-        <div class="folder-meta">
-          <span class="stamp-tag">TypeScript</span>
-          <span class="stamp-tag">NestJS</span>
-          <span class="stamp-tag">Prisma ORM</span>
-        </div>
-        <div class="folder-links">
+        <p>Website pemesanan dessert untuk mendukung transaksi jual-beli, dikembangkan sebagai bagian dari Ujian Kenaikan Kelas (UKL). REST API dirancang untuk mengelola alur pemesanan dan data produk.</p>
+      </div>
+      <div class="project-side">
+        <p class="stack">TypeScript, NestJS, Prisma ORM</p>
+        <div class="project-links">
           <a href="https://github.com/AlfiAprilia/Ukl_Dessertopia" target="_blank" rel="noopener">Lihat repository</a>
         </div>
       </div>
     </div>
 
-    <div class="folder">
-      <span class="folder-tab">Berkas No. 02 — TanyaDok</span>
-      <div class="folder-body">
-        <div class="role-stamp">BACK-<br>END</div>
-        <div class="folder-top">
-          <h3 class="folder-title">TanyaDok — Web Konsultasi Dokter</h3>
+    <div class="project">
+      <div class="project-main">
+        <div class="project-head">
+          <h3>TanyaDok</h3>
+          <span class="kind">Back-End</span>
         </div>
-        <p class="folder-desc">Website kesehatan untuk mempermudah pengguna berkonsultasi dengan dokter, dikembangkan sebagai salah satu project tugas sekolah. REST API dirancang untuk mendukung alur konsultasi.</p>
-        <div class="folder-meta">
-          <span class="stamp-tag">TypeScript</span>
-          <span class="stamp-tag">NestJS</span>
-          <span class="stamp-tag">Prisma ORM</span>
-        </div>
-        <div class="folder-links">
+        <p>Website kesehatan untuk mempermudah pengguna berkonsultasi dengan dokter, dikembangkan sebagai salah satu project tugas sekolah. REST API dirancang untuk mendukung alur konsultasi.</p>
+      </div>
+      <div class="project-side">
+        <p class="stack">TypeScript, NestJS, Prisma ORM</p>
+        <div class="project-links">
           <a href="https://github.com/alfiaprilia149-sys/tanyaDok_be" target="_blank" rel="noopener">Lihat repository</a>
         </div>
       </div>
     </div>
 
-    <div class="folder">
-      <span class="folder-tab">Berkas No. 03 — KitchenLab</span>
-      <div class="folder-body">
-        <div class="role-stamp">DESAIN</div>
-        <div class="folder-top">
-          <h3 class="folder-title">KitchenLab — Aplikasi Pencarian Kelas Memasak</h3>
+    <div class="project">
+      <div class="project-main">
+        <div class="project-head">
+          <h3>KitchenLab</h3>
+          <span class="kind design">Desain</span>
         </div>
-        <p class="folder-desc">Aplikasi kuliner untuk membantu pengguna menemukan kelas memasak online bersama chef ahli, dikembangkan sebagai tugas sekolah bertema kewirausahaan. Peran saya di project ini adalah desainer aplikasi.</p>
-        <div class="folder-meta">
-          <span class="stamp-tag">Figma</span>
-          <span class="stamp-tag">UI/UX Design</span>
-        </div>
-        <div class="folder-links">
+        <p>Aplikasi kuliner untuk membantu pengguna menemukan kelas memasak online bersama chef ahli, dikembangkan sebagai tugas sekolah bertema kewirausahaan. Peran saya di project ini adalah desainer aplikasi.</p>
+      </div>
+      <div class="project-side">
+        <p class="stack">Figma, UI/UX Design</p>
+        <div class="project-links">
           <a href="https://www.figma.com/design/uNsckzFVnabPGaNdAk6DWH/Untitled?node-id=0-1&p=f&t=qP8MaLtyCHL0a9F9-0" target="_blank" rel="noopener">Lihat desain di Figma</a>
         </div>
       </div>
     </div>
 
-    <div class="folder">
-      <span class="folder-tab">Berkas No. 04 — KostHunter</span>
-      <div class="folder-body">
-        <div class="role-stamp">BACK-<br>END</div>
-        <div class="folder-top">
-          <h3 class="folder-title">KostHunter</h3>
+    <div class="project">
+      <div class="project-main">
+        <div class="project-head">
+          <h3>KostHunter</h3>
+          <span class="kind">Back-End</span>
         </div>
-        <p class="folder-desc">Sistem back-end untuk membantu pengguna mencari dan mengelola informasi tempat kost.</p>
-        <div class="folder-meta">
-          <span class="stamp-tag">TypeScript</span>
-          <span class="stamp-tag">NestJS</span>
-          <span class="stamp-tag">Prisma ORM</span>
-        </div>
-        <div class="folder-links">
+        <p>Sistem back-end untuk membantu pengguna mencari dan mengelola informasi tempat kost.</p>
+      </div>
+      <div class="project-side">
+        <p class="stack">TypeScript, NestJS, Prisma ORM</p>
+        <div class="project-links">
           <a href="https://github.com/AlfiAprilia/kos-hunter" target="_blank" rel="noopener">Lihat repository</a>
         </div>
       </div>
     </div>
 
-    <div class="folder">
-      <span class="folder-tab">Berkas No. 05 — BackLibrary</span>
-      <div class="folder-body">
-        <div class="role-stamp">BACK-<br>END</div>
-        <div class="folder-top">
-          <h3 class="folder-title">BackLibrary</h3>
+    <div class="project">
+      <div class="project-main">
+        <div class="project-head">
+          <h3>BackLibrary</h3>
+          <span class="kind">Back-End</span>
         </div>
-        <p class="folder-desc">Sistem back-end untuk manajemen perpustakaan, sudah di-deploy secara live.</p>
-        <div class="folder-meta">
-          <span class="stamp-tag">TypeScript</span>
-          <span class="stamp-tag">NestJS</span>
-          <span class="stamp-tag">Prisma ORM</span>
-        </div>
-        <div class="folder-links">
+        <p>Sistem back-end untuk manajemen perpustakaan.</p>
+      </div>
+      <div class="project-side">
+        <p class="stack">TypeScript, NestJS, Prisma ORM</p>
+        <div class="project-links">
           <a href="https://github.com/AlfiAprilia/backend-library" target="_blank" rel="noopener">Lihat repository</a>
         </div>
       </div>
     </div>
 
-    <p class="folder-note">
-      DesserTopia, TanyaDok, KostHunter, dan BackLibrary dibangun dengan pola arsitektur back-end yang sama: NestJS (TypeScript) untuk struktur server, Prisma sebagai ORM untuk koneksi ke database, dan REST API sebagai penghubung antara data dan aplikasi. KitchenLab dibentuk dari kerja sama tim yang membutuhkan komunikasi dan problem solving yang baik.
-    </p>
+    <p class="note">DesserTopia, TanyaDok, KostHunter, dan BackLibrary dibangun dengan pola arsitektur back-end yang sama: NestJS (TypeScript) untuk struktur server, Prisma sebagai ORM untuk koneksi ke database, dan REST API sebagai penghubung antara data dan aplikasi. KitchenLab dibentuk dari kerja sama tim yang membutuhkan komunikasi dan problem solving yang baik.</p>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
+<section class="block" id="riwayat">
   <div class="wrap">
-    <p class="file-label">arsip — riwayat</p>
-    <h2 class="section-title">Pendidikan, organisasi &amp; sertifikasi</h2>
+    <p class="eyebrow">riwayat</p>
+    <h2 class="title">Pendidikan, organisasi &amp; sertifikasi</h2>
 
-    <div class="catalog">
-      <div class="catalog-row">
-        <p class="catalog-date">2024 — 2027</p>
-        <div>
-          <p class="catalog-title">Rekayasa Perangkat Lunak</p>
-          <p class="catalog-org">SMK Telkom Malang</p>
-        </div>
+    <div class="cards">
+      <div class="card">
+        <p class="card-date">2024 – 2027</p>
+        <h3>Rekayasa Perangkat Lunak</h3>
+        <p class="card-org">SMK Telkom Malang</p>
       </div>
-      <div class="catalog-row">
-        <p class="catalog-date">2025</p>
-        <div>
-          <p class="catalog-title">Ketua Divisi Rumah Tangga</p>
-          <p class="catalog-org">Dewan Ambalan</p>
-          <p class="catalog-desc">Mengoordinasikan kebutuhan logistik kegiatan dan turut membantu berjalannya kegiatan kewirausahaan pada acara Perjusa 2025.</p>
-        </div>
+      <div class="card">
+        <p class="card-date">2025</p>
+        <h3>Ketua Divisi Rumah Tangga</h3>
+        <p class="card-org">Dewan Ambalan</p>
+        <p class="card-desc">Mengoordinasikan kebutuhan logistik kegiatan dan turut membantu berjalannya kegiatan kewirausahaan pada acara Perjusa 2025.</p>
       </div>
-      <div class="catalog-row">
-        <p class="catalog-date">November 2025</p>
-        <div>
-          <p class="catalog-title">Semifinalis — Future Researchers Competition (Business Plan)</p>
-          <p class="catalog-org">Telkom University</p>
-        </div>
+      <div class="card">
+        <p class="card-date">November 2025</p>
+        <h3>Semifinalis Future Researchers Competition (Business Plan)</h3>
+        <p class="card-org">Telkom University</p>
       </div>
-      <div class="catalog-row">
-        <p class="catalog-date">September 2024</p>
-        <div>
-          <p class="catalog-title">UKBI (Uji Kemahiran Berbahasa Indonesia)</p>
-          <p class="catalog-org">Badan Pengembangan dan Pembinaan Bahasa</p>
-        </div>
+      <div class="card">
+        <p class="card-date">September 2024</p>
+        <h3>UKBI (Uji Kemahiran Berbahasa Indonesia)</h3>
+        <p class="card-org">Badan Pengembangan dan Pembinaan Bahasa</p>
+      </div>
+    </div>
+
+    <div class="lang">
+      <p class="eyebrow">bahasa</p>
+      <div class="chips">
+        <span class="chip alt">Bahasa Indonesia (Native)</span>
+        <span class="chip alt">Bahasa Inggris (Pendukung)</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LANGUAGES -->
-<section id="languages">
+<section class="contact" id="contact">
   <div class="wrap">
-    <p class="file-label">arsip — bahasa</p>
-    <h2 class="section-title">Bahasa</h2>
-    <div class="stamp-tags">
-      <span class="stamp-tag">Bahasa Indonesia (Native)</span>
-      <span class="stamp-tag">Bahasa Inggris (Pendukung)</span>
+    <h2>Mari terhubung</h2>
+    <p>Terbuka untuk kesempatan magang di bidang Web Development (Back-End). Jangan ragu untuk menghubungi saya.</p>
+    <div class="contact-links">
+      <a href="mailto:alfiaprilia149@gmail.com">alfiaprilia149@gmail.com</a>
+      <a href="https://linkedin.com/in/alfiaprilia" target="_blank" rel="noopener">linkedin.com/in/alfiaprilia</a>
+      <a href="https://github.com/AlfiAprilia" target="_blank" rel="noopener">github.com/AlfiAprilia</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="envelope">
-      <h2>Mari terhubung</h2>
-      <p>Terbuka untuk kesempatan magang di bidang Web Development (Back-End). Jangan ragu untuk menghubungi saya.</p>
-      <div class="contact-links">
-        <a href="mailto:alfiaprilia149@gmail.com">alfiaprilia149@gmail.com</a>
-        <a href="https://linkedin.com/in/alfiaprilia" target="_blank" rel="noopener">linkedin.com/in/alfiaprilia</a>
-        <a href="https://github.com/AlfiAprilia" target="_blank" rel="noopener">github.com/AlfiAprilia</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 Alfi Aprilia Nur Fauzia Fatimah
-</footer>
+<footer>© 2026 Alfi Aprilia Nur Fauzia Fatimah</footer>
 
 </body>
 </html>
